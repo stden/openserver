@@ -1,0 +1,47 @@
+#---------------------------------------------#
+# Внимание!                                   #
+# При редактировании конфигурации хоста       #
+# нельзя удалять или заменять системные       #
+# переменные %...%, вы можете вносить только  #
+# новые записи дополняющие конфигурацию.      #
+#---------------------------------------------#
+
+#---------------------------------------------#
+# Начало блока конфигурации HTTP хоста        #
+#---------------------------------------------#
+<VirtualHost %ip%:%httpport%>
+  DocumentRoot "%hostdir%"
+  ServerName "%host%"
+  ServerAlias "%host%" %aliases%
+  <IfModule alias_module>
+    ScriptAlias /cgi-bin/ "%hostdir%/cgi-bin/"
+  </IfModule> 
+  <Location /openserver/server-status>
+    SetHandler server-status
+  </Location>
+</VirtualHost>
+#---------------------------------------------#
+# Конец блока конфигурации HTTP хоста         #
+#---------------------------------------------#
+
+#---------------------------------------------#
+# Начало блока конфигурации HTTPS хоста       #
+#---------------------------------------------#
+<VirtualHost %ip%:%httpsport%>
+  SSLEngine on
+  BrowserMatch ".*MSIE.*" \
+         nokeepalive ssl-unclean-shutdown \
+         downgrade-1.0 force-response-1.0
+  DocumentRoot "%hostdir%"
+  ServerName "%host%"
+  ServerAlias "%host%" %aliases%
+  <IfModule alias_module>
+    ScriptAlias /cgi-bin/ "%hostdir%/cgi-bin/"
+  </IfModule>
+  <Location /openserver/server-status>
+    SetHandler server-status
+  </Location>
+</VirtualHost>
+#---------------------------------------------#
+# Конец блока конфигурации HTTPS хоста        #
+#---------------------------------------------#

@@ -1,0 +1,5 @@
+<User "%user%">
+    Password "%pass%"
+	Mount / "%dir%"
+	Allow / %rights%
+</User>

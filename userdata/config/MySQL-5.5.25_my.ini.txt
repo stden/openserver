@@ -1,0 +1,100 @@
+############################
+# MySQL-5.5.25             #
+############################
+[client]
+port		= %mysqlport%
+character-sets-dir    = "%dprogdir%\\modules\\database\\%dbdriver%\\share\\charsets"
+
+[mysql]
+character-sets-dir    = "%dprogdir%\\modules\\database\\%dbdriver%\\share\\charsets"
+no-auto-rehash
+
+[mysqld]
+character-sets-dir    = "%dprogdir%\\modules\\database\\%dbdriver%\\share\\charsets"
+character-set-server=%sqlchr%
+collation-server=%mysqlcharset%
+init-connect="SET NAMES %sqlchr%"
+#skip-character-set-client-handshake
+basedir = "%dprogdir%\\modules\\database\\%dbdriver%"
+datadir = "%dprogdir%\\userdata\\%dbdriver%"
+tmpdir = "%dprogdir%\\userdata\\temp"
+bind-address = %ip%
+port = %mysqlport%
+pid_file = "%dprogdir%\\userdata\\temp\\mysql.pid"
+back_log = 50
+max_connections = 20
+max_connect_errors = 10
+
+key_buffer_size = 25M
+read_buffer_size=2M
+read_rnd_buffer_size=4M
+join_buffer_size = 1M
+sort_buffer_size = 1M
+bulk_insert_buffer_size = 2M
+max_allowed_packet = 2M
+max_heap_table_size = 25M
+max_sort_length = 20
+max_tmp_tables = 25
+table_open_cache = 969
+tmp_table_size = 25M
+wait_timeout=60
+interactive_timeout=30
+ft_min_word_len=4
+thread_cache_size = 4
+thread_concurrency = 4
+connect_timeout = 5
+query_cache_size=25M
+query_cache_limit = 256K
+myisam_max_sort_file_size=50M
+myisam_repair_threads = 1
+myisam_recover
+transaction-isolation = READ-COMMITTED
+lower_case_table_names = 2
+default-storage-engine=InnoDB
+
+# Set the SQL mode to strict
+#sql-mode="STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION"
+skip-innodb_adaptive_hash_index
+skip-name-resolve
+low-priority-updates
+skip-external-locking
+local-infile=0
+#binlog_cache_size = 1M
+#log-bin=mysql-bin
+#binlog_format=mixed
+log-error = "%dprogdir%\\userdata\\logs\\%dbdriver%_error.log"
+general_log = 1
+general_log_file = "%dprogdir%\\userdata\\logs\\%dbdriver%_queries.log"
+server-id = 1
+
+innodb_data_home_dir = "%dprogdir%\\userdata\\%dbdriver%"
+innodb_data_file_path = ibdata1:10M:autoextend
+innodb_write_io_threads = 8
+innodb_read_io_threads = 8
+#innodb_file_per_table = 1
+innodb_buffer_pool_size = 10M
+innodb_additional_mem_pool_size = 1M
+innodb_log_file_size = 10M
+innodb_log_buffer_size = 1M
+innodb_log_files_in_group = 2
+innodb_max_dirty_pages_pct = 90
+innodb_flush_log_at_trx_commit = 2
+innodb_lock_wait_timeout = 30
+innodb_thread_concurrency=4
+#skip-innodb_doublewrite
+
+[mysqldump]
+quick
+max_allowed_packet = 8M
+
+[myisamchk]
+key_buffer_size = 25M
+sort_buffer_size = 25M
+read_buffer = 2M
+write_buffer = 2M
+
+[mysqlhotcopy]
+interactive-timeout
+
+[mysqld_safe]
+open-files-limit = 2048

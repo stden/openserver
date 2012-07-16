@@ -1,0 +1,16 @@
+[sendmail]
+smtp_server=%smtp_server%
+smtp_port=%smtp_port%
+auth_username=%auth_username%
+auth_password=%auth_password%
+smtp_ssl=%smtp_ssl%
+pop3_server=%pop3_server%
+pop3_username=%pop3_username%
+pop3_password=%pop3_password%
+default_domain=
+force_sender=%force_sender%
+force_recipient=
+hostname=
+error_logfile="%progdir%\userdata\logs\mail_error.log"
+debug_logfile="%progdir%\userdata\logs\mail_debug.log"
+
