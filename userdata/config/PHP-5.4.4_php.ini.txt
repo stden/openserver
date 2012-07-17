@@ -40,7 +40,7 @@ max_execution_time = 30
 max_input_time = 60
 ;max_input_nesting_level = 64
 ; max_input_vars = 1000
-memory_limit = 128M
+memory_limit = 1024M
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; Error handling and logging ;
@@ -108,7 +108,7 @@ request_order = "EGPCS"
 register_argc_argv = On
 auto_globals_jit = On
 ;enable_post_data_reading = Off
-post_max_size = 50M
+post_max_size = 1000M
 auto_prepend_file =
 auto_append_file =
 default_mimetype = "text/html"
@@ -130,7 +130,7 @@ cgi.rfc2616_headers = 0
 
 file_uploads = On
 upload_tmp_dir = "%sprogdir%/userdata/temp/"
-upload_max_filesize = 50M
+upload_max_filesize = 1000M
 max_file_uploads = 20
 
 allow_url_fopen = On
@@ -352,7 +352,8 @@ session.referer_check =
 ;session.entropy_file = /dev/urandom
 session.cache_limiter = nocache
 session.cache_expire = 180
-session.use_trans_sid = 0
+;  если равно 1, то PHP передает его, добавляя к URL и формам, если 0 - то нет.
+session.use_trans_sid = 1
 session.hash_function = 0
 session.hash_bits_per_character = 5
 url_rewriter.tags = "a=href,area=href,frame=src,input=src,form=fakeentry"
