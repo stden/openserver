@@ -36,7 +36,7 @@ echo "key = ".$key."<br>";
 
 ?>
    
-    <iframe src="?frame" height="100" width="500"></iframe>
+    <iframe src="?frame" height="200" width="500"></iframe>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
     <script>
         $(function() {
@@ -45,7 +45,7 @@ echo "key = ".$key."<br>";
                     console.log(data); 
                     $('#ajax').html(data); // записывая их на страницу
                 });
-            }, 1500);
+            }, 200);
         });
     </script>
     <div id="ajax"></div>
