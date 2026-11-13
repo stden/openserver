@@ -1,0 +1,6 @@
+BindInterface %ip%
+BindPort %port%
+CommandTimeout %commandtimeout%
+ConnectTimeout %connecttimeout%
+MaxConnections %maxconnections%
+LookupHosts %lookuphosts%

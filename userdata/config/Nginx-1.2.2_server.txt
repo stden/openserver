@@ -1,0 +1,107 @@
+#---------------------------------------------#
+# Основная конфигурация сервера
+#---------------------------------------------#
+
+worker_processes 1;
+pid "%sprogdir%/userdata/temp/nginx.pid";
+error_log "%sprogdir%/userdata/logs/%httpdriver%_error.log" warn;
+events {
+worker_connections 124;
+}
+
+http {
+include       "%sprogdir%/modules/http/%httpdriver%/conf/mime.types";
+default_type application/octet-stream;
+%httpcharset%
+log_format main '$host: $remote_addr [$time_local] '
+'"$request" "$http_referer" $status $bytes_sent '
+'"$http_user_agent" "http_x_forwarded_for"';
+
+access_log "%sprogdir%/userdata/logs/%httpdriver%_queries.log" main;
+error_log "%sprogdir%/userdata/logs/%httpdriver%_error.log" warn;
+
+autoindex on;
+sendfile on;
+tcp_nopush on;
+tcp_nodelay on;
+reset_timedout_connection  on;
+ignore_invalid_headers  off;
+server_tokens off;
+keepalive_timeout 0;
+
+#---------------------------------------------#
+# Конфигурация буферов
+#---------------------------------------------#
+
+client_header_timeout 1m;
+client_body_timeout 1m;
+send_timeout 1m;
+client_header_buffer_size 4k;
+large_client_header_buffers 4 4k;
+server_names_hash_bucket_size 128;
+server_names_hash_max_size 5096;
+client_max_body_size 50m;
+client_body_buffer_size 128k;
+output_buffers 8 64k;
+
+#---------------------------------------------#
+# Конфигурация GZIP
+#---------------------------------------------#
+
+gzip            on;
+gzip_static     off;
+gzip_buffers    8 16k;
+gzip_disable    "msie6";
+gzip_min_length 4096;
+gzip_comp_level 6;
+gzip_proxied    any;
+gzip_vary       on;
+
+#---------------------------------------------#
+# Указание временных каталогов
+#---------------------------------------------#
+
+scgi_temp_path  "%sprogdir%/userdata/temp" 1 2;
+uwsgi_temp_path  "%sprogdir%/userdata/temp" 1 2;
+fastcgi_temp_path  "%sprogdir%/userdata/temp" 1 2;
+client_body_temp_path  "%sprogdir%/userdata/temp" 1 2;
+proxy_temp_path  "%sprogdir%/userdata/temp" 1 2;
+
+#---------------------------------------------#
+# Конфигурация SSL
+#---------------------------------------------#
+
+ssl_certificate "%sprogdir%/userdata/config/server.crt";
+ssl_certificate_key "%sprogdir%/userdata/config/server.key";
+ssl_session_timeout 5m;
+ssl_protocols SSLv3 TLSv1;
+ssl_ciphers ALL:!aNULL:!ADH:!eNULL:!LOW:!EXP:RC4+RSA:+HIGH:+MEDIUM;
+ssl_prefer_server_ciphers on;
+
+#---------------------------------------------#
+# FastCGI PHP
+#---------------------------------------------#
+
+%streams%
+
+#---------------------------------------------#
+# Первичный виртуальный хост "по умолчанию"
+#---------------------------------------------#
+server {
+    listen %ip%:%httpport% default;
+    location / {
+      root   %sprogdir%/modules/system/html/openserver/default;
+      index  index.html;
+    }
+}
+server {
+    listen %ip%:%httpsport% default;
+    ssl on;   
+    location / {
+      root   %sprogdir%/modules/system/html/openserver/default;
+      index  index.html;
+    }
+}
+#---------------------------------------------#
+# Конец конфигурации хоста "по умолчанию"     #
+#---------------------------------------------#

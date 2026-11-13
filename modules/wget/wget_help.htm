@@ -1,0 +1,1999 @@
+<html><head>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=koi8-r">
+<title>Проект OpenNet: MAN wget (1) Команды и прикладные программы пользовательского уровня (FreeBSD и Linux)</title></head>
+<meta name="KeyWords" content="man, manual, MAN, системное руководство, linux, FreeBSD, OpenBSD, Solaris, ядро, программы, системный вызов, wget">
+<body bgcolor="#DDE1C2" text="#000000" link="#0000FF" vlink="#000080" alink="#FF00FF">
+<LINK REL="stylesheet" href="/opennet4.css" type="text/css">
+<!--htdig_noindex-->
+<FORM method="get" action="http://www.opennet.ru/search.shtml">
+<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 WIDTH="100%">
+<TR>
+<TD VALIGN="BOTTOM" BGCOLOR="#E9EAD6" style="background: #E9EAD6 url('/back.gif') repeat-x bottom left">
+<A HREF="http://www.opennet.ru/"><IMG SRC="/opennet2.gif" HEIGHT=60 WIDTH=249 ALT="The OpenNET Project" BORDER="0"></A><br>
+</TD>
+
+<TD BGCOLOR="#B0B190" WIDTH="1"><IMG SRC="/p.gif" HEIGHT=1 WIDTH=1 ALT=""></TD>
+
+<TD VALIGN=TOP ALIGN=RIGHT WIDTH="470" BGCOLOR="#D9DAC6">
+<TABLE BORDER=0 CELLPADDING=1 WIDTH="470">
+<TR>
+<TD HEIGHT=60 BGCOLOR="#D9DAC6">
+
+<script language=JavaScript>            
+var plugin=(navigator.mimeTypes && navigator.mimeTypes["application/x-shockwave-flash"]) ? navigator.mimeTypes["application/x-shockwave-flash"].enabledPlugin : 0;           
+           
+if ( plugin ) {           
+           
+ plugin=parseInt(plugin.description.substring(plugin.description.indexOf(".")-2))>=6;           
+           
+}           
+           
+else if (navigator.userAgent && navigator.userAgent.indexOf("MSIE")>=0            
+           
+   && (navigator.userAgent.indexOf("Windows 95")>=0 || navigator.userAgent.indexOf("Windows 98")>=0 || navigator.userAgent.indexOf("Windows NT")>=0)) {           
+           
+ document.write('<SCR'+'IPT LANGUAGE=VBScript\> \n');           
+           
+ document.write('on error resume next \n');           
+           
+ document.write('plugin=( IsObject(CreateObject("ShockwaveFlash.ShockwaveFlash.6")))\n');           
+           
+ document.write('</SCRIPT\> \n');           
+           
+}           
+           
+if ( plugin ) {           
+           
+     var swf_url = '/img/securit7.swf' + '?link1=' + 'http://click.opennet.ru/cgi-bin/opennet/hjump.cgi?securit7';  
+     document.write('<OBJECT classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width=468 height=60>');  
+     document.write('<param name=movie value="' + swf_url + '"><param name=menu value=false><param name=quality value=high><param name="play" value="true">');  
+     document.write('<OBJECT TYPE="application/x-shockwave-flash" data="' + swf_url + '" width=468 height=60>');  
+     document.write('<param name=movie value="' + swf_url + '"><param name=menu value=false><param name=quality value=high><param name="play" value="true">');  
+     document.write('</object>');  
+     document.write('</object>');  
+                                            
+}else{                  
+    document.write('<a href=http://click.opennet.ru/cgi-bin/opennet/hjump.cgi?securit7 target=_blank><img src=/img/securit7.gif width=468 height=60 border=0></a>');                                            
+}            
+</script>           
+<noscript><a href=http://click.opennet.ru/cgi-bin/opennet/hjump.cgi?securit7 target=_blank><img src=/img/securit7.gif width=468 height=60 border=0></a></noscript>
+</TD>
+</TR>
+</TABLE>
+</TD>
+
+<TD BGCOLOR="#B0B190" WIDTH="1"><IMG SRC="/p.gif" HEIGHT=1 WIDTH=1 ALT=""></TD>
+<TD WIDTH="40" BGCOLOR="#E9EAD6" style="background: #E9EAD6 url('/back.gif') repeat-x bottom left">&nbsp;</TD>
+<TD BGCOLOR="#B0B190" WIDTH="1"><IMG SRC="/p.gif" HEIGHT=1 WIDTH=1 ALT=""></TD>
+
+<TD VALIGN=TOP ALIGN=RIGHT WIDTH="130" BGCOLOR="#E9EAD6" ROWSPAN=3>
+<a href="http://www.lanbilling.ru/" target=_blank><img src="/img/lanbilling7.gif" width=130 height=125 border=0></a>
+</TD>
+
+</TR>
+
+<TR BGCOLOR="#B0B190"><TD COLSPAN=6><IMG SRC="/p.gif" HEIGHT=1 WIDTH=1 ALT=""></TD></TR>
+
+
+<TR BGCOLOR="#E9EAD6">
+<TD ALIGN=CENTER COLSPAN=5>
+<table width="100%">
+<tr>
+<td rowspan=2 width=300 nowrap class="h">
+<INPUT type=hidden name=exclude value="index|/man.shtml"><A HREF="http://www.opennet.ru/search.shtml" class="h"><u>Поиск</u></A>&nbsp;(<A HREF="http://www.opennet.ru/keywords/" class="h">ключи</A>):&nbsp;<INPUT type="text" size="20" name="words" value="" title='для поиска в google наберите "g фраза"'>
+</td><td width="25%">
+&nbsp;   <A HREF="http://www.opennet.ru/prog/sml/" class="h"><b><u>ПРОГРАММЫ</u></b></A>
+</td><td width="25%">
+   <A HREF="http://www.opennet.ru/filebase.shtml" class="h"><b><u>СТАТЬИ</u></b></A>
+</td><td width="25%">
+   <A HREF="http://www.opennet.ru/tips/sml/" class="h"><b><u>СОВЕТЫ</u></b></A>
+</td><td width="25%">
+   <A HREF="http://www.opennet.ru/forum/" class="h"><b><u>ФОРУМ</u></b></A>
+</td></tr>
+<tr><td>
+&nbsp;   <A HREF="http://wiki.opennet.ru" class="h"><b><u>WIKI</u></b></A>
+</td><td class="h">
+   <A HREF="http://www.opennet.ru/opennews/" class="h"><b><u>НОВОСТИ</u></b></A> (<a href="http://www.opennet.ru/news/opennet.shtml" class="h">+</a>)
+</td><td>
+   <A HREF="http://www.opennet.ru/man.shtml" class="h"><b><u>MAN'ы</u></b></A>
+</td><td>
+   <A HREF="http://www.opennet.ru/docs/" class="h"><b><u>ДОКУМЕНТАЦИЯ</u></b></A>
+</td></tr>
+</table>
+</TD>
+<TD BGCOLOR="#B0B190" WIDTH="1"><IMG SRC="/p.gif" HEIGHT=1 WIDTH=1 ALT=""></TD>
+</TR>
+<TR BGCOLOR="#B0B190"><TD COLSPAN=7><IMG SRC="/p.gif" HEIGHT=2 WIDTH=1 ALT=""></TD></TR>
+</TABLE>
+
+<div style="float: left; width: 279; text-align: left;padding-right: 60px;" id=adv><A HREF="http://www.ip-as.ru" target=_blank><IMG SRC="/img/ipas3.gif" BORDER="0" width="279" height="40"></A></div>
+<div style="padding-top: 10px;position:absolute;left:50%;margin-left:-235px;width:470px;" id=adv2>
+</div>
+<div style="width: 279;float: right;" id=adv3><A HREF="http://job.samsung.ru" target=_blank><IMG SRC="/img/samsung_line8.gif" BORDER="0" width="279" height="40"></A></div>
+<div style="clear: both;"></div>
+<br>
+
+<script language="JavaScript"><!--
+d=document;a='';r=escape(d.referrer);a+=';r='+r;
+js=10; d.write('<img src="http://top.list.ru/counter'+
+'?id=77689;js='+js+a+';rand='+Math.random()+
+'" alt="" height=1 width=1>');
+if(js>11)d.write('<'+'!-- ')//--></script><noscript><img
+src="http://top.list.ru/counter?js=na;id=77689"
+height=1 width=1 alt="">
+</noscript>
+
+</FORM>
+<!--/htdig_noindex-->
+
+<CENTER><H3><FONT COLOR="#000088">Интерактивная система просмотра системных руководств (man-ов)</FONT></H3></CENTER>
+<form method="GET" action="/man.shtml"> 
+<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=1 BGCOLOR="#B0B190" align=center width="80%">
+<TR>
+<TD VALIGN=TOP>
+
+<table BORDER=0 CELLSPACING=0 CELLPADDING=0 BGCOLOR="#E9EAD6" align=center width="100%">
+<tr><td>&nbsp;<font color=#555555>Тема</font></td><td><font color=#555555>Набор руководств</font></td><td><font color=#555555>Категория</font></td><td>&nbsp;</td></tr>
+<tr><td>
+
+&nbsp;<input type="text" size="20" name="topic" value="wget"></td><td><select name="russian">
+<option value="4" >Solaris man
+<option value="1" >FreeBSD man
+<option value="3" >Разные man
+<option value="0" selected>Русские man
+<option value="2" >Linux man
+<option value="5" >POSIX man
+</select></td>
+<td><select size="1" name="category">
+	  <option value="" selected>All
+	  <option value="1">1
+	  <option value="2">2
+	  <option value="3">3
+	  <option value="4">4
+	  <option value="5">5
+	  <option value="6">6
+	  <option value="7">7
+	  <option value="8">8
+	  <option value="9">9
+</select></td>
+
+<td><input type="submit" name="submit" value="Показать man"></td></tr>
+<script language="JavaScript" src="/print.js"></script>
+<tr><td colspan="4" align=left>&nbsp;[<A HREF="/man.shtml">Cписок руководств</A> | <A HREF="#" onClick="pr('none');">Печать</a>]</td></tr>
+</table>
+</td></tr></table>
+</form>
+<h3></h3><font size="+2">wget (1)</font><hr><li>&gt;&gt; <a href="/man.shtml?topic=wget&category=1&russian=0"><u>wget</u></a> (1) <font color=#555555> ( Русские man: Команды и прикладные программы пользовательского уровня )</font></li><li> <a href="/man.shtml?topic=wget&category=1&russian=2"><u>wget</u></a> (1) <font color=#555555> ( Linux man: Команды и прикладные программы пользовательского уровня )</font></li><li><font color=#555555>Ключ <a href="/keywords/wget.html"><u>wget</u></a> обнаружен в базе ключевых слов.</font></li>
+
+<A NAME="lbAB">&nbsp;</A>
+<H2>НАЗВАНИЕ</H2>
+
+wget - руководство <FONT SIZE="-1">GNU</FONT> Wget
+<A NAME="lbAC">&nbsp;</A>
+<H2>СИНТАКСИС</H2>
+
+<A NAME="ixAAC"></A>
+wget [<I>параметры</I>]... [<I></I><FONT SIZE="-1"><I>URL</I></FONT><I></I>]...
+<A NAME="lbAD">&nbsp;</A>
+<H2>ОПИСАНИЕ</H2>
+
+<A NAME="ixAAD"></A>
+<FONT SIZE="-1">GNU</FONT> Wget - это открыто распостраняемая утилита для загрузки файлов
+из интернет. Она поддерживает протоколы <FONT SIZE="-1">HTTP</FONT>, <FONT SIZE="-1">HTTPS</FONT>, и <FONT SIZE="-1">FTP</FONT>,
+загрузку с серверов прокси по протоколу <FONT SIZE="-1">HTTP</FONT>.
+<P>
+
+Wget может следовать по ссылкам страниц HTML и создавать локальные копии удаленных
+сайтов web, при этом возможно полное восстановление структуры папок сайта
+(&quot;recursive downloading&quot; - рекурсивная загрузка). Во время такой работы
+Wget ищет файл с правами доступа для роботов (/robots.txt).
+Возможна также конвертация ссылок в загруженных файлах HTML для дальнейшего
+просмотра сайта в автономном режиме (&quot;off-line browsing&quot;).
+<P>
+
+Проверка заголовков файлов: Wget может считывать заголовки файлов (это доступно
+по протоколам HTTP и FTP) и сравнивать их с заголовкам ранее загруженных файлов,
+после чего может загрузить новые версии файлов. Благодаря этому при использовании
+Wget можно реализовывать зеркальное хранение сайтов или набора файлов на FTP.
+<P>
+
+Wget разработан для медленных или нестабильных соединений: если во время загрузки
+возникнет проблема, то Wget будет пытаться продолжить загрузку файла. Если сервер,
+с которого загружается файл, поддерживает докачку файлоа, то Wget продолжит
+загружать файл именно с того места, где оборвалась загрузка.
+<A NAME="lbAE">&nbsp;</A>
+<H2>OПЦИИ</H2>
+
+<A NAME="ixAAE"></A>
+<A NAME="lbAF">&nbsp;</A>
+<H2>Основные параметры</H2>
+
+<A NAME="ixAAF"></A>
+<DL COMPACT>
+<DT><B>-V</B><DD>
+<A NAME="ixAAG"></A>
+
+<DT><B>--version</B><DD>
+<A NAME="ixAAH"></A>
+
+Отобразить версию Wget.
+<DT><B>-h</B><DD>
+<A NAME="ixAAI"></A>
+
+<DT><B>--help</B><DD>
+<A NAME="ixAAJ"></A>
+
+Отобразить параметры командной строки Wget.
+<DT><B>-b</B><DD>
+<A NAME="ixAAK"></A>
+
+<DT><B>--background</B><DD>
+<A NAME="ixAAL"></A>
+
+Перейти в фоновый режим после запуска. 
+Если файл для сообщений не указан параметром <B>-o</B>,
+то он записывается в <I>wget-log</I>
+<P>
+<DT><B>-e</B> <I>command</I><DD>
+<A NAME="ixAAM"></A>
+
+<DT><B>--execute</B> <I>command</I><DD>
+<A NAME="ixAAN"></A>
+
+Выполнить <I>command</I> как если бы она была частью <I>.wgetrc</I>.
+Команда будет выполнена
+после команд в <I>.wgetrc</I>. 
+</DL>
+<A NAME="lbAG">&nbsp;</A>
+<H2>Параметры сообщений</H2>
+
+<A NAME="ixAAO"></A>
+<DL COMPACT>
+<DT><B>-o</B> <I>logfile</I><DD>
+<A NAME="ixAAP"></A>
+
+<DT><B>--output-file=</B><I>logfile</I><DD>
+<A NAME="ixAAQ"></A>
+
+Записывать все сообщения в <I>logfile</I>. Иначе они будут направлены в stderr.
+<DT><B>-a</B> <I>logfile</I><DD>
+<A NAME="ixAAR"></A>
+
+<DT><B>--append-output=</B><I>logfile</I><DD>
+<A NAME="ixAAS"></A>
+
+Дополнить <I>logfile</I>.  Как и <B>-o</B>, только <I>logfile</I> не заменяется, а дополняется.
+Если <I>logfile</I> не существует, создается новый файл. 
+<DT><B>-d</B><DD>
+<A NAME="ixAAT"></A>
+
+<DT><B>--debug</B><DD>
+<A NAME="ixAAU"></A>
+
+Отображать сообщения отладки - разная информация, важная для разработчиков Wget.
+<DT><B>-q</B><DD>
+<A NAME="ixAAV"></A>
+
+<DT><B>--quiet</B><DD>
+<A NAME="ixAAW"></A>
+
+Выключить сообщения Wget.
+<DT><B>-v</B><DD>
+<A NAME="ixAAX"></A>
+
+<DT><B>--verbose</B><DD>
+<A NAME="ixAAY"></A>
+
+Включить подробные сообщения, со всеми доступными данными. По умолчанию включено.
+<DT><B>-nv</B><DD>
+<A NAME="ixAAZ"></A>
+
+<DT><B>--non-verbose</B><DD>
+<A NAME="ixABA"></A>
+
+Исопльзовать сокращенные сообщения (чтобы выключить сообщения, см. <B>-q</B>).
+Сообщения об ошибках и основная информация будут отображаться.
+<DT><B>-i</B> <I>file</I><DD>
+<A NAME="ixABB"></A>
+
+<DT><B>--input-file=</B><I>file</I><DD>
+<A NAME="ixABC"></A>
+
+Считать URL из <I>file</I>. В этом случае указывать URL в командной строке
+не требуется. Если URL указаны и в командной строке и в <I>file</I>, то сначала
+будут загружены URL из командной строки. <I>file</I> не обязательно должен иметь
+формат <FONT SIZE="-1">HTML</FONT> (но ничего страшного, если это так) -- URL просто должны
+быть указаны в нем.
+
+
+<P>
+
+
+Если вы укажете <B>--force-html</B>, то файл будет прочтен как <B>html</B>.
+В этом случае могут возникнуть проблемы с относительными ссылками. Это можно
+предотвратить добавлением в него <TT>&quot;&lt;base href=&quot;</TT>url<TT>&quot;&gt;&quot;</TT>
+или вводом в командной строке <B>--base=</B><I>url</I>.
+<DT><B>-F</B><DD>
+<A NAME="ixABD"></A>
+
+<DT><B>--force-html</B><DD>
+<A NAME="ixABE"></A>
+
+При чтении URL из файла, включает чтение файла как <FONT SIZE="-1">HTML</FONT>.
+Для предотвращения ошибок в случае локального файла <FONT SIZE="-1">HTML</FONT> добавьте
+в файл <TT>&quot;&lt;base href=&quot;</TT>url<TT>&quot;&gt;&quot;</TT> или введите параметр
+командной строки <B>--base</B>.
+<DT><B>-B</B> <I></I><FONT SIZE="-1"><I>URL</I></FONT><I></I><DD>
+<A NAME="ixABF"></A>
+
+<DT><B>--base=</B><I></I><FONT SIZE="-1"><I>URL</I></FONT><I></I><DD>
+<A NAME="ixABG"></A>
+
+При чтении URL из файла (<B>-F</B>) определяет <I></I><FONT SIZE="-1"><I>URL</I></FONT><I></I>, добавляемый 
+к относительным адресам файла, указанного параметром <B>-i</B>.
+</DL>
+<A NAME="lbAH">&nbsp;</A>
+<H2>Параметры загрузки</H2>
+
+<A NAME="ixABH"></A>
+<DL COMPACT>
+<DT><B>--bind-address=</B><I></I><FONT SIZE="-1"><I>ADDRESS</I></FONT><I></I><DD>
+<A NAME="ixABI"></A>
+При соединениях по протоколам <FONT SIZE="-1">TCP/IP</FONT> передает <TT>&quot;bind()&quot;</TT> в <I></I><FONT SIZE="-1"><I>ADDRESS</I></FONT><I></I>
+на локальной машине. В <I></I><FONT SIZE="-1"><I>ADDRESS</I></FONT><I></I> может быть указано как имя хоста, так и <FONT SIZE="-1">IP</FONT> адрес.
+Используется, если ваш компьютер имеет несколько адресов IP.
+<DT><B>-t</B> <I>number</I><DD>
+<A NAME="ixABJ"></A>
+
+<DT><B>--tries=</B><I>number</I><DD>
+<A NAME="ixABK"></A>
+
+Устанавливает число повторов <I>number</I>.
+Укажите 0 или <B>inf</B> для отмены повторов.
+<DT><B>-O</B> <I>file</I><DD>
+<A NAME="ixABL"></A>
+
+<DT><B>--output-document=</B><I>file</I><DD>
+<A NAME="ixABM"></A>
+
+Документы не будут записываться в соответствующие файлы, а будут объединены
+вместе и записаны в файл <I>file</I>. Если <I>file</I> существует, то он будет заменен.
+Если <I>file</I> указан, как <B>-</B>, то документы будут выводиться на стандартный вывод (stdout).
+Этот параметр автоматически устанавливает число повторов в 1.
+Полезен при закачке разделенных на части файлов с почтовых серверов через интерфейс web.
+<DT><B>-nc</B><DD>
+<A NAME="ixABN"></A>
+
+<DT><B>--no-clobber</B><DD>
+<A NAME="ixABO"></A>
+
+Если при загрузке сайта связь оборвалась, то укажите этот параметр для
+продолжения загрузки с места прерывания связи.
+
+
+<P>
+
+
+При запуске Wget без параметров <B>-N</B>, <B>-nc</B>, или <B>-r</B>
+загрузка одного и того же файла в одну папку приведет к созданию копии файла
+с именем <I>file</I><B>.1</B>.
+Если существует файл и с таким именем, третья копия будет называться
+<I>file</I><B>.2</B> и т.д. При параметре <B>-nc</B> будут выводиться предупреждения об этом.
+
+
+<P>
+
+
+При запуске Wget с параметром <B>-r</B>, но без <B>-N</B> или <B>-nc</B>,
+новая загрузка сайта приведет к замене уже загруженных файлов. При указании
+параметра <B>-nc</B> загрузка продолжится с места обрыва и загруженные файлы
+не будут загружаться заново (если только они не изменились).
+
+
+<P>
+
+
+При запуске Wget с параметром <B>-N</B>, с или без <B>-r</B>, файл будет
+загружен только если он новее уже существующего, или если размер его не совпадает
+с имеющейся копией (см. Сравнение по дате). <B>-nc</B> не комбинируется с <B>-N</B>.
+
+
+<P>
+
+
+При указанном параметре <B>-nc</B> файлы с расширениями <B>.html</B> или
+(вот это просто ужасно) <B>.htm</B> с локальных дисков будут загружаться,
+как будто бы из интернет.
+<DT><B>-c</B><DD>
+<A NAME="ixABP"></A>
+
+<DT><B>--continue</B><DD>
+<A NAME="ixABQ"></A>
+
+Возобновление загрузки файла. Используется, если загрузка файла была прервана.
+Например:
+
+
+<P>
+
+
+
+<PRE>
+        wget -c <A HREF="ftp://sunsite.doc.ic.ac.uk/ls-lR.Z">ftp://sunsite.doc.ic.ac.uk/ls-lR.Z</A>
+
+
+</PRE>
+
+
+Если в текущей папке уже есть файл с именем <I>ls-lR.Z</I>, то Wget проверит,
+соответствует ли данный файл загружаемому (не по размеру!), и если это так,
+то отправит запрос на сервер на продолжение загрузки файла с того же места,
+где оборвалась загрузка в прошлый раз.
+
+
+<P>
+
+
+Помните, что при обрыве связи Wget повторяет попытки дозагрузки самостоятельно
+и без параметра <B>-c</B>, и только когда он &quot;сдастся&quot; и завершит свою работу,
+то для возобновления загрузки файла будет нужен этот параметр.
+
+
+<P>
+
+
+Без указания опции <B>-c</B> предыдущий пример приведет к загрузке указанного
+файла заново с конечным именем <I>ls-lR.Z.1</I>, никак не трогая уже имеющийся <I>ls-lR.Z</I>.
+
+
+<P>
+
+
+Начиная с версии 1.7 при указании параметра <B>-c</B> если файл на сервере
+имеет равный или меньший, чем у локального файла, размер, то Wget не будет
+ничего загружать и отобразит соответствующее сообщение.
+
+
+<P>
+
+
+Однако, при использовании <B>-c</B> любой файл на сервере, имеющий больший размер,
+чем локальный файл, будет рассматриваться, как недокачанный. При этом будет загружено
+и записано в конец файла только <TT>&quot;(длина(удал.файл) - длина(локал.файл))&quot;</TT> байт.
+Это может пригодиться, елси вам нужно загрузить новые сообщения из какого-либо журнала (log).
+
+
+<P>
+
+
+При этом если загружаемый файл больше потому, что он <I>изменился</I>, то вы получите
+поврежденный файл (т.е. файл может в итоге получиться совершенно отличным от оригинала).
+Нужно быть особенно внимательным при использовании <B>-c</B> вместе с <B>-r</B>,
+так как каждый измененный файл может быть кандидатом на ``незавершенную загрузку''.
+
+
+<P>
+
+
+Вы также получите поврежденный файл если ваш сервер прокси <FONT SIZE="-1">HTTP</FONT> работает
+глупо и при обрыве соединения пишет в файл сообщение ''transfer interrupted''.
+Вероятно, в следующих версиях Wget сам будет исправлять это.
+
+
+<P>
+
+
+Помните, что <B>-c</B> работает только с серверами <FONT SIZE="-1">FTP</FONT> и <FONT SIZE="-1">HTTP</FONT>, 
+поддерживающими заголовки <TT>&quot;Range&quot;</TT> (т.е. докачку файлов).
+<DT><B>--progress=</B><I>type</I><DD>
+<A NAME="ixABR"></A>
+Индикатор прогресса загрузки и его тип. Возможные значения: ``dot'' и ``bar''.
+
+
+<P>
+
+
+По умолчанию используется ``bar''. Указание опции <B>--progress=bar</B> приведет
+к прорисовке красивого индикатора из символов <FONT SIZE="-1">ASCII</FONT> (как ''термометр'').
+Если стандартный выход не <FONT SIZE="-1">TTY</FONT>, то будет использован ``dot''.
+
+
+<P>
+
+
+Укажите <B>--progress=dot</B> чтобы переключится на тип ``dot''.
+Прогресс загрузки будет отмечаться добавлением в полосе точки или знака равно,
+каждый символ представляет одинаковое количество данных.
+
+
+<P>
+
+
+При использовании этого типа, вы можете указать его стиль - <B>dot:</B><I>style</I>.
+Если стиль <TT>&quot;default&quot;</TT>, то каждый символ будет представлять 1 Kб,
+10 символов в кластере и 50 в строке.
+Стиль <TT>&quot;binary&quot;</TT> имеет более ''компьютерный'' вид -
+8Kб в символе, 16 символов в кластере и 48 символов в строке (получается строка на 384 Kб). 
+Стиль <TT>&quot;mega&quot;</TT> используется для загрузки больших файлов - каждый символ представляет
+64Kб, 8 символов в кластере и 48 символов в строке (получается 3 Mб на строку).
+
+
+<P>
+
+
+Вы можете определить стиль по умолчанию, используя команду <TT>&quot;progress&quot;</TT>
+в <I>.wgetrc</I>. Если вы хотите, чтобы тип индикатора ``bar'' использовался всегда
+(а не только при выводе в stdout), то укажите
+<B>--progress=bar:force</B>.
+<DT><B>-N</B><DD>
+<A NAME="ixABS"></A>
+
+<DT><B>--timestamping</B><DD>
+<A NAME="ixABT"></A>
+
+Включить сравнение по дате.
+<DT><B>-S</B><DD>
+<A NAME="ixABU"></A>
+
+<DT><B>--server-response</B><DD>
+<A NAME="ixABV"></A>
+
+Отображать заголовки, отправляемые серверам <FONT SIZE="-1">HTTP</FONT> и запросы, отправляемые серверам <FONT SIZE="-1">FTP</FONT>.
+<DT><B>--spider</B><DD>
+<A NAME="ixABW"></A>
+Установка поведения Wget как &quot;паука&quot;, т. е. Wget не будет загружать файлы,
+а только будет проверять их наличие. Так можно проверять закладки и
+ссылки сайта. Например:
+
+
+<P>
+
+
+
+<PRE>
+        wget --spider --force-html -i bookmarks.html
+
+
+</PRE>
+
+
+Wget не содержит все возможности &quot;настоящих пауков&quot; для <FONT SIZE="-1">WWW</FONT>.
+<DT><B>-T seconds</B><DD>
+<A NAME="ixABX"></A>
+
+<DT><B>--timeout=</B><I>seconds</I><DD>
+<A NAME="ixABY"></A>
+
+Время ожидания в секундах. По умолчанию время ожидания равно 900 с (15 мин).
+Установка значения в 0 отменяет проверку времени ожидания.
+
+
+<P>
+
+
+Пожалуйста, не снижайте значение времени ожидания, если Вы точно не знаете, что именно делаете.
+<DT><B>-w</B> <I>seconds</I><DD>
+<A NAME="ixABZ"></A>
+
+<DT><B>--wait=</B><I>seconds</I><DD>
+<A NAME="ixACA"></A>
+
+Пауза в секундах между несколькими загрузками (в т.ч. повторами).
+Это снижает загруженность сервера. Чтобы указать значение в минутах,
+используйте <TT>&quot;m&quot;</TT>, в часах - <TT>&quot;h&quot;</TT>, 
+в днях - <TT>&quot;d&quot;</TT> после числа.
+
+
+<P>
+
+
+Указание большого значения этого параметра полезно, 
+если сеть нестабильна (например при обрывах модемной связи).
+<DT><B>--waitretry=</B><I>seconds</I><DD>
+<A NAME="ixACB"></A>
+Устанавливает паузу только между повторами оборвавшихся загрузок.
+Wget будет ждать 1 секунду после первого обрыва, 2 секунды после
+второго обрыва загрузки того же файла, и т.д. - до максимума,
+который указывается в секундах. Например, при значении данного
+параметра, равного 10, Wget будет ждать в общем (1 + 2 + ... + 10) = 55
+секунд для каждого файла.
+
+
+<P>
+
+
+Это значение указывается по умолчанию в файле <I>wgetrc</I>.
+<DT><B>--random-wait</B><DD>
+<A NAME="ixACC"></A>
+Некоторые серверы, совершая формирование файлов журналов с паузами запросов файлов,
+могут определить рекурсивную загрузку файлов - сканирование роботами, такими, 
+как Wget. Этот параметр устанавливает время между запросами, варьируя паузы со временем,
+рассчитываемым от 0 до 2*<I>wait</I> (секунд), где <I>wait</I> указано
+параметром <B>-w</B> для маскировки Wget.
+
+
+<P>
+
+
+Нельзя забывать, что исходный код Wget доступен, и пэтому даже эту маскировку
+при желании можно вычислить.
+<DT><B>-Y on/off</B><DD>
+<A NAME="ixACD"></A>
+
+<DT><B>--proxy=on/off</B><DD>
+<A NAME="ixACE"></A>
+
+Поддержка сервера прокси. Включена по умолчанию, если прокси определен.
+<DT><B>-Q</B> <I>quota</I><DD>
+<A NAME="ixACF"></A>
+
+<DT><B>--quota=</B><I>quota</I><DD>
+<A NAME="ixACG"></A>
+
+Квота на размер загружаемых файлов. Указывается в байтах (по умолчанию),
+в килобайтах Кб (если в конце <B>k</B>) или в мегабайтах Мб (если в конце <B>m</B>).
+
+
+<P>
+
+
+При исчерпании квоты текущий файл загружается до конца, то есть
+квота не работает при загрузке одного файла. Например,
+если вы исполниет <B>wget -Q10k <A HREF="ftp://wuarchive.wustl.edu/ls-lR.gz">ftp://wuarchive.wustl.edu/ls-lR.gz</A></B>,
+то файл <I>ls-lR.gz</I> будет полностью загружен. Также 
+все указанные в командной строке файлы будут обязательно загружены,
+в отличие от списка файлов в одном файле или как при рекурсивной загрузке.
+
+
+<P>
+
+
+Указание 0 или inf отменит квоту.
+</DL>
+<A NAME="lbAI">&nbsp;</A>
+<H2>Параметры загрузки папок</H2>
+
+<A NAME="ixACH"></A>
+<DL COMPACT>
+<DT><B>-nd</B><DD>
+<A NAME="ixACI"></A>
+
+<DT><B>--no-directories</B><DD>
+<A NAME="ixACJ"></A>
+
+Не создавать структуру папок при рекурсивной загрузке. При указанном параметре,
+все файлы будут загружаться в одну папку. Если файл с данным именем уже существует,
+то он будет сохранен под именем <B>ИмяФайла.n</B>.
+<DT><B>-x</B><DD>
+<A NAME="ixACK"></A>
+
+<DT><B>--force-directories</B><DD>
+<A NAME="ixACL"></A>
+
+Противоположно параметру <B>-nd</B> - создавать структуру папок,
+начиная с главной страницы сервера. Например,
+<B>wget -x <A HREF="http://fly.srk.fer.hr/robots.txt">http://fly.srk.fer.hr/robots.txt</A></B> приведет к загрузке
+файла в папку<I>fly.srk.fer.hr</I>. 
+<DT><B>-nH</B><DD>
+<A NAME="ixACM"></A>
+
+<DT><B>--no-host-directories</B><DD>
+<A NAME="ixACN"></A>
+
+Не создавать пустые папки в начале структуры.  По умолчанию
+<B>/pub/xemacs/</B>.
+Если вы загрузите ее с параметром <B>-r</B>, то она сохранится
+под именем <I><A HREF="ftp://ftp.xemacs.org">ftp.xemacs.org</A>/pub/xemacs/</I>.
+С параметром <B>-nH</B> из имени начальной папки вырежется <I><A HREF="ftp://ftp.xemacs.org">ftp.xemacs.org</A>/</I>,
+и она будет называться <I>pub/xemacs</I>.
+А параметр <B>--cut-dirs</B> уберет <I>number</I> компонентов.
+Примеры работы параметра <B>--cut-dirs</B>:
+
+
+<P>
+
+
+
+<PRE>
+        Без параметров        -&gt; <A HREF="ftp://ftp.xemacs.org">ftp.xemacs.org</A>/pub/xemacs/
+        -nH               -&gt; pub/xemacs/
+        -nH --cut-dirs=1  -&gt; xemacs/
+        -nH --cut-dirs=2  -&gt; .
+
+
+</PRE>
+
+
+
+<PRE>
+        --cut-dirs=1      -&gt; <A HREF="ftp://ftp.xemacs.org">ftp.xemacs.org</A>/xemacs/
+        ...
+
+
+</PRE>
+
+
+Если вы хотите просто избавиться от структуры папок,
+то вы можете заменить этот параметр на <B>-nd</B> и <B>-P</B>.
+В отличие от <B>-nd</B>, <B>-nd</B> работает с подкаталогами -
+например, при <B>-nH --cut-dirs=1</B> подкаталог <I>beta/</I>
+запишется, как <I>xemacs/beta</I>.
+<DT><B>-P</B> <I>prefix</I><DD>
+<A NAME="ixACO"></A>
+
+<DT><B>--directory-prefix=</B><I>prefix</I><DD>
+<A NAME="ixACP"></A>
+
+Определяет <I>начальную папку</I>, в которой будет сохранена
+структура папок сайта (или просто файлы). По умолчанию
+этот параметр равен <B>.</B> (текущая папка).
+</DL>
+<A NAME="lbAJ">&nbsp;</A>
+<H2>Параметры <FONT SIZE="-1">HTTP</FONT></H2>
+
+<A NAME="ixACQ"></A>
+<DL COMPACT>
+<DT><B>-E</B><DD>
+<A NAME="ixACR"></A>
+
+<DT><B>--html-extension</B><DD>
+<A NAME="ixACS"></A>
+
+Если тип загруженного файла <B>text/html</B> и его адрес не оканчивается
+на <B>\.[Hh][Tt][Mm][Ll]?</B>, при использовании данного параметра к его
+имени будет добавлено <B>.html</B>. Это может быть полезно при зеркальном
+хранении страниц <B>.asp</B>, если вы не хотите, чтобы они вмешивались
+в работу вашего сервера Apache. Другой случай применения этого парамера -
+это загрузка страниц-ответов CGI скриптов. Страница с <FONT SIZE="-1">URL</FONT> вида
+<B><A HREF="http://site.com/article.cgi?25">http://site.com/article.cgi?25</A></B> будет сохранена,
+как <I>article.cgi?25.html</I>.
+
+
+<P>
+
+
+Примечание: при обновлении или другой перезагрузке страниц с данным
+параметром последние будут загружаться заново в любом случае,
+т.к. Wget не может узнать, имеет ли отношение локальный файл <I>X.html</I>
+к загружаемому с <FONT SIZE="-1">URL</FONT> <I>X</I>. Чтобы избежать лишней перезагрузки,
+используйте опции <B>-k</B> и <B>-K</B>. При этом оригинальные версии
+файлов будут также сохранены как <I>X.orig</I>.
+<DT><B>--http-user=</B><I>user</I><DD>
+<A NAME="ixACT"></A>
+
+<DT><B>--http-passwd=</B><I>password</I><DD>
+<A NAME="ixACU"></A>
+
+Имя пользователя <I>user</I> и пароль <I>password</I> для сервера <FONT SIZE="-1">HTTP</FONT>.
+В зависимости от типа отклика, Wget будет использовать
+<TT>&quot;basic&quot;</TT> (небезопасную)
+или <TT>&quot;digest&quot;</TT> (защищенную) авторизацию.
+
+
+<P>
+
+
+Можно также указывать имя пользователя и пароль и в самом <FONT SIZE="-1">URL</FONT>.
+<DT><B>-C on/off</B><DD>
+<A NAME="ixACV"></A>
+
+<DT><B>--cache=on/off</B><DD>
+<A NAME="ixACW"></A>
+
+Включает или выключает кеширование со стороны сервера.
+При этом Wget посылает соответствующих запрос (<B>Pragma: no-cache</B>).
+Также используется для быстрого обновления файлов на прокси-сервере.
+
+
+<P>
+
+
+По умолчанию кеширование разрешено.
+<DT><B>--cookies=on/off</B><DD>
+<A NAME="ixACX"></A>
+Включает или выключает использование cookie. Сервер отправляет
+клиенту cookie, используя заголовок <TT>&quot;Set-Cookie&quot;</TT>
+и клиент отвечает таким же cookie. Благодаря этому сервер может
+вести статистику посетителей. По умолчанию cookie используются,
+но запись их на диск выключена. 
+<DT><B>--load-cookies</B> <I>file</I><DD>
+<A NAME="ixACY"></A>
+Загружать cookie из <I>file</I> перед первой загрузкой <FONT SIZE="-1">HTTP</FONT>.
+<I>file</I> имеет текстовый формат, как <I>cookies.txt</I> у Netscape.
+
+
+<P>
+
+
+Этот параметр используется при зеркалировании. Для этого Wget отправляет
+те же cookies, которые отправляет ваш браузер при соединении с сервером <FONT SIZE="-1">HTTP</FONT>.
+Это включается данным параметром - просто укажите Wget путь
+к <I>cookies.txt</I>. Разные браузеры хранят cookie в разных папках:
+<DL COMPACT><DT><DD>
+<DL COMPACT>
+<DT>Netscape&nbsp;4.x.<DD>
+<A NAME="ixACZ"></A>
+Файл находится в <I>~/.netscape/cookies.txt</I>.
+<DT>Mozilla&nbsp;и&nbsp;Netscape&nbsp;6.x.<DD>
+<A NAME="ixADA"></A>
+Mozilla хранит cookies в <I>cookies.txt</I>, расположенном где-то 
+в <I>~/.mozilla</I>, в папке вашего профиля.
+Полный путь обычно заканчивается чем-то вроде
+<I>~/.mozilla/default/some-weird-string/cookies.txt</I>.
+<DT>Internet&nbsp;Explorer.<DD>
+<A NAME="ixADB"></A>
+Чтобы экспортировать cookie для Wget, выберите &quot;Файл&quot;, &quot;Импорт и Экспорт&quot;,
+в мастере выберите &quot;Экспорт файлов cookie&quot;. Проверено в Internet Explorer 5;
+возможно не будет работать в ранних версиях.
+<DT>Другие&nbsp;обозреватели.<DD>
+<A NAME="ixADC"></A>
+Параметр <B>--load-cookies</B> будет работать с cookie в формате Netscape,
+который поддерживается Wget.
+</DL>
+</DL>
+
+<DL COMPACT><DT><DD>
+
+
+<P>
+
+
+Если вы не можете использовать параметр <B>--load-cookies</B>,
+то все равно есть выход. Если ваш обозреватель поддерживает
+Запишите имя и значение cookie и вручную укажите Wget отправку этих cookie:
+
+
+<P>
+
+
+
+<PRE>
+        wget --cookies=off --header &quot;Cookie: I&lt;name&gt;=I&lt;value&gt;&quot;
+
+
+</PRE>
+
+
+</DL>
+
+<DT><B>--save-cookies</B> <I>file</I><DD>
+<A NAME="ixADD"></A>
+Сохранить cookie из <I>file</I> в конце сессии. Устаревшие cookie не сохраняются. 
+<DT><B>--ignore-length</B><DD>
+<A NAME="ixADE"></A>
+Некоторые серверы <FONT SIZE="-1">HTTP</FONT> (точнее, скрипты <FONT SIZE="-1">CGI</FONT>) отправляют
+заголовки <TT>&quot;Content-Length&quot;</TT>, которые указывают Wget,
+что загружено еще не все. И Wget загружает один документ несколько раз. 
+
+
+<P>
+
+
+С этим параметром, Wget будет игнорировать заголовки <TT>&quot;Content-Length&quot;</TT>.
+<DT><B>--header=</B><I>additional-header</I><DD>
+<A NAME="ixADF"></A>
+Определяет <I>additional-header</I>, отправляемый серверу <FONT SIZE="-1">HTTP</FONT>.
+Он должен содержать <B>:</B> и символы после него.
+
+
+<P>
+
+
+Вы можете определить несколько дополнительных заголовков
+через использование <B>--header</B> несколько раз.
+
+
+<P>
+
+
+
+<PRE>
+        wget --header='Accept-Charset: iso-8859-2' \
+             --header='Accept-Language: hr'        \
+               <A HREF="http://fly.srk.fer.hr/">http://fly.srk.fer.hr/</A>
+
+
+</PRE>
+
+
+Указание пустой строки в значении заголовка
+очистит все определенные пользователем до этого заголовки. 
+<DT><B>--proxy-user=</B><I>user</I><DD>
+<A NAME="ixADG"></A>
+
+<DT><B>--proxy-passwd=</B><I>password</I><DD>
+<A NAME="ixADH"></A>
+
+Определяет имя пользователя <I>user</I> и пароль password для авторизации
+сервере прокси. Будет использован тип авторизации <TT>&quot;basic&quot;</TT>.
+<DT><B>--referer=</B><I>url</I><DD>
+<A NAME="ixADI"></A>
+Добавляет заголовок `Referer: <I>url</I>' в запрос <FONT SIZE="-1">HTTP</FONT>.
+Используется при загрузке страниц, которые передаются правильно
+только если сервер знает, с какой страницы вы пришли.
+<DT><B>-s</B><DD>
+<A NAME="ixADJ"></A>
+
+<DT><B>--save-headers</B><DD>
+<A NAME="ixADK"></A>
+
+Сохранять заголовки, отправляемые серверам <FONT SIZE="-1">HTTP</FONT>. 
+<DT><B>-U</B> <I>agent-string</I><DD>
+<A NAME="ixADL"></A>
+
+<DT><B>--user-agent=</B><I>agent-string</I><DD>
+<A NAME="ixADM"></A>
+
+Идентифицироваться, как <I>agent-string</I> при запросе на <FONT SIZE="-1">HTTP</FONT> сервер. 
+
+
+<P>
+
+
+Протокол <FONT SIZE="-1">HTTP</FONT> позволяет определять себя использованием
+заголовка агента. Wget по умолчанию идентифицируется,
+как <B>Wget/</B><I>version</I>, где <I>version</I> - это версия Wget.
+
+
+<P>
+
+
+Некоторые серверы выдают требуемую информацию только для обозревателей,
+идентифицирующихся как <TT>&quot;Mozilla&quot;</TT> или
+Microsoft <TT>&quot;Internet Explorer&quot;</TT>. 
+Этот параметр позволяет обмануть такие серверы.
+</DL>
+<A NAME="lbAK">&nbsp;</A>
+<H2>Параметры <FONT SIZE="-1">FTP</FONT></H2>
+
+<A NAME="ixADN"></A>
+<DL COMPACT>
+<DT><B>-nr</B><DD>
+<A NAME="ixADO"></A>
+
+<DT><B>--dont-remove-listing</B><DD>
+<A NAME="ixADP"></A>
+
+Не удалять временные файлы <I>.listing</I>, генерируемые при загрузке
+по <FONT SIZE="-1">FTP</FONT>. Эти файлы содержат информацию о папках серверов <FONT SIZE="-1">FTP</FONT>.
+Неудаление поможет вам быстро определить обновление папок сервера 
+(т.е. определять., что ваше зеркало является таковым). 
+
+
+<P>
+
+
+Если вы не удаляете <I>.listing</I>, то помните о своей безопасности!
+Например, с таким именем можно создать символическую ссылку
+на <I>/etc/passwd</I> или что-то еще.
+<DT><B>-g on/off</B><DD>
+<A NAME="ixADQ"></A>
+
+<DT><B>--glob=on/off</B><DD>
+<A NAME="ixADR"></A>
+
+Включает или выключает использование специальных символов (<I>маски</I>)
+по протоколу <FONT SIZE="-1">FTP</FONT>. Это может быть <B>*</B>, <B>?</B>, <B>[</B> и <B>]</B>.
+Например:
+
+
+<P>
+
+
+
+<PRE>
+        wget <A HREF="ftp://gnjilux.srk.fer.hr/*.msg">ftp://gnjilux.srk.fer.hr/*.msg</A>
+
+
+</PRE>
+
+
+По умолчанию использование символов маски разрешено, 
+если <FONT SIZE="-1">URL</FONT> содержит такие символы.
+
+
+<P>
+
+
+Вы можете также взять <FONT SIZE="-1">URL</FONT> в кавычки. 
+Это сработает только на серверах Unix <FONT SIZE="-1">FTP</FONT> 
+(и эмулирующих выход Unix <TT>&quot;ls&quot;</TT>).
+<DT><B>--passive-ftp</B><DD>
+<A NAME="ixADS"></A>
+Включает пассивный режим <FONT SIZE="-1">FTP</FONT>, когда соединение инициируется клиентом.
+Используется при наличии firewall.
+<DT><B>--retr-symlinks</B><DD>
+<A NAME="ixADT"></A>
+При рекурсивной загрузке папок <FONT SIZE="-1">FTP</FONT> файлы, на которые указывают
+символические ссылки, не загружаются. Данный параметр отключает это.
+
+
+<P>
+
+
+Параметр <B>--retr-symlinks</B> работает сейчас только для файлов, не для папок.
+
+
+<P>
+
+
+Помните, что этот параметр не работает при загрузке одиночного файла.
+</DL>
+<A NAME="lbAL">&nbsp;</A>
+<H2>Параметры рекурсивной загрузки</H2>
+
+<A NAME="ixADU"></A>
+<DL COMPACT>
+<DT><B>-r</B><DD>
+<A NAME="ixADV"></A>
+
+<DT><B>--recursive</B><DD>
+<A NAME="ixADW"></A>
+
+Включить рекурсивную загрузку.
+<DT><B>-l</B> <I>depth</I><DD>
+<A NAME="ixADX"></A>
+
+<DT><B>--level=</B><I>depth</I><DD>
+<A NAME="ixADY"></A>
+
+Максимальная глубина рекурсивной загрузки <I>depth</I>.
+По умолчанию ее значение равно 5. 
+<DT><B>--delete-after</B><DD>
+<A NAME="ixADZ"></A>
+Удалять каждую страницу (локально) <I>после</I> ее загрузки.
+Используется для сохранения новых версий часто запрашиваемых
+страниц на прокси. Например:
+
+
+<P>
+
+
+
+<PRE>
+        wget -r -nd --delete-after <A HREF="http://whatever.com/~popular/page/">http://whatever.com/~popular/page/</A>
+
+
+</PRE>
+
+
+Параметр <B>-r</B> включает загрузку по умолчанию,
+параметр <B>-nd</B> отключает создание папок.
+
+
+<P>
+
+
+При указанном параметре <B>--delete-after</B>
+будет игнорироваться параметр <B>--convert-links</B>.
+<DT><B>-k</B><DD>
+<A NAME="ixAEA"></A>
+
+<DT><B>--convert-links</B><DD>
+<A NAME="ixAEB"></A>
+
+После завершения загрузки конвертировать ссылки в документе для просмотра
+в автономном режиме. Это касается не только видимых ссылок на другие
+документы, а ссылок на все внешние локальные файлы.
+
+
+<P>
+
+
+Каждая ссылка изменяется одним из двух способов:
+<DL COMPACT><DT><DD>
+<DL COMPACT>
+<DT>*<DD>
+Ссылки на файлы, загруженные Wget изменяются на соответствующие
+относительные ссылки.
+
+
+<P>
+
+
+Например: если загруженный файл <I>/foo/doc.html</I>, то ссылка 
+на также загруженный файл <I>/bar/img.gif</I> будет выглядеть,
+как <B>../bar/img.gif</B>. Этот способ работает, если есть видимое
+соотношение между папками одного и другого файла.
+<DT>*<DD>
+Ссылки на файлы, не загруженные Wget будут изменены на абсолютные
+адреса этих файлов на удаленном сервере.
+
+
+<P>
+
+
+Например: если загруженный файл <I>/foo/doc.html</I> содержит ссылку
+на <I>/bar/img.gif</I> (или на <I>../bar/img.gif</I>), то ссылка 
+в файле <I>doc.html</I> изменится на <I><A HREF="http://host/bar/img.gif">http://host/bar/img.gif</A></I>.
+</DL>
+</DL>
+
+<DL COMPACT><DT><DD>
+
+
+<P>
+
+
+Благодаря этому, возможен автономный просмотр сайта и файлов: если загружен файл,
+на который есть ссылка, то ссылка будет указывать на него, если нет -
+то ссылка будет указывать на его адрес в интернет (если такой существует).
+При конвертировании используются относительные ссылки, значит вы сможете
+переносить загруженный сайт в другую папку, не меняя его структуру.
+
+
+<P>
+
+
+Только после завершения загрузки Wget знает, какие файлы были загружены.
+Следовательно, при параметре <B>-k</B> конвертация произойдет только по
+завершении загрузки.
+</DL>
+
+<DT><B>-K</B><DD>
+<A NAME="ixAEC"></A>
+
+<DT><B>--backup-converted</B><DD>
+<A NAME="ixAED"></A>
+
+Конвертировать ссылки обратно - убирать расширение <B>.orig</B>.
+Изменяет поведение опции <B>-N</B>.
+<DT><B>-m</B><DD>
+<A NAME="ixAEE"></A>
+
+<DT><B>--mirror</B><DD>
+<A NAME="ixAEF"></A>
+
+Включить параметры для зеркального хранения сайтов. Этот параметр
+равен нескольким параметрам: <B>-r -N -l inf -nr</B>.
+Для неприхотливого хранения зеркальных копий сайтов вы можете
+использовать данный параметр.
+<DT><B>-p</B><DD>
+<A NAME="ixAEG"></A>
+
+<DT><B>--page-requisites</B><DD>
+<A NAME="ixAEH"></A>
+
+Загружать все файлы, которые нужны для отображения страниц <FONT SIZE="-1">HTML</FONT>.
+Например: рисунки, звук, каскадные стили.
+
+
+<P>
+
+
+По умолчанию такие файлы не загружаются. Параметры <B>-r</B> и <B>-l</B>,
+указанные вместе могут помочь, но т.к. Wget не различает внешние и внутренние
+документы, то нет гарантии, что загрузится все требуемое.
+
+
+<P>
+
+
+Например, <I>1.html</I> содержит тег <TT>&quot;&lt;IMG&gt;&quot;</TT>, со ссылкой
+на <I>1.gif</I>, и тег <TT>&quot;&lt;A&gt;&quot;</TT>, ссылающийся на внешний 
+документ <I>2.html</I>.  Страница <I>2.html</I> аналогична, но ее 
+рисунок - <I>2.gif</I> и ссылается она на <I>3.html</I>.
+Скажем, это продолжается до определенного числа.
+
+
+<P>
+
+
+Если будет дана команда:
+
+
+<P>
+
+
+
+<PRE>
+        wget -r -l 2 <A HREF="http://I">http://I</A>&lt;site&gt;/1.html
+
+
+</PRE>
+
+
+то <I>1.html</I>, <I>1.gif</I>, <I>2.html</I>, <I>2.gif</I> и <I>3.html</I> загрузятся.
+Как видим, <I>3.html</I> без <I>3.gif</I>, т.к. Wget просто считает число прыжков,
+по которым он перешел, доходит до 2 и останавливается. А при параметрах:
+
+
+<P>
+
+
+
+<PRE>
+        wget -r -l 2 -p <A HREF="http://I">http://I</A>&lt;site&gt;/1.html
+
+
+</PRE>
+
+
+Все файлы <I>и</I> рисунок <I>3.gif</I> страницы <I>3.html</I> загрузятся.
+Аналогично
+
+
+<P>
+
+
+
+<PRE>
+        wget -r -l 1 -p <A HREF="http://I">http://I</A>&lt;site&gt;/1.html
+
+
+</PRE>
+
+
+приведет к загрузке <I>1.html</I>, <I>1.gif</I>, <I>2.html</I> и <I>2.gif</I>.
+Чтобы загрузить одну указанную страницу <FONT SIZE="-1">HTML</FONT> со всеми ее элементами,
+просто не указывайте <B>-r</B> и <B>-l</B>:
+
+
+<P>
+
+
+
+<PRE>
+        wget -p <A HREF="http://I">http://I</A>&lt;site&gt;/1.html
+
+
+</PRE>
+
+
+При этом Wget будет себя вести, как при параметре <B>-r</B>,
+но будут загружены страница и ее вспомогательные файлы.
+Если вы хотите, чтобы вспомогательные файлы на других
+серверах (т.е. через абсолютные ссылки) были загружены, используйте:
+
+
+<P>
+
+
+
+<PRE>
+        wget -E -H -k -K -p <A HREF="http://I">http://I</A>&lt;site&gt;/I&lt;document&gt;
+
+
+</PRE>
+
+
+И в завершении, нужно сказать, что для Wget внешняя ссылка -
+это <FONT SIZE="-1">URL</FONT>, указанный в тегах <TT>&quot;&lt;A&gt;&quot;</TT>,
+<TT>&quot;&lt;AREA&gt;&quot;</TT> и <TT>&quot;&lt;LINK&gt;&quot;</TT>, 
+кроме <TT>&quot;&lt;LINK REL=&quot;stylesheet&quot;&gt;&quot;</TT>.
+</DL>
+<A NAME="lbAM">&nbsp;</A>
+<H2>Параметры запрета/разрешения рекурсивной загрузки</H2>
+
+<A NAME="ixAEI"></A>
+<DL COMPACT>
+<DT><B>-A</B> <I>acclist</I> <B>--accept</B> <I>acclist</I><DD>
+<A NAME="ixAEJ"></A>
+
+<DT><B>-R</B> <I>rejlist</I> <B>--reject</B> <I>rejlist</I><DD>
+<A NAME="ixAEK"></A>
+
+Список имен файлов, разделенных запятыми, которые следует или не следует
+загружать.  Разрешается задание имен файлов по маске.
+<DT><B>-D</B> <I>domain-list</I><DD>
+<A NAME="ixAEL"></A>
+
+<DT><B>--domains=</B><I>domain-list</I><DD>
+<A NAME="ixAEM"></A>
+
+Список доменов <I>domain-list</I>, с которых разрешено загружать файлы.
+Разделяется запятыми. Этот параметр <I>не</I> включает <B>-H</B>.
+<DT><B>--exclude-domains</B> <I>domain-list</I><DD>
+<A NAME="ixAEN"></A>
+Список доменов, с которых <I>не</I> разрешено загружать файлы
+<DT><B>--follow-ftp</B><DD>
+<A NAME="ixAEO"></A>
+Следовать по ссылкам <FONT SIZE="-1">FTP</FONT> с <FONT SIZE="-1">HTML</FONT> страниц.
+Иначе, ссылки на файлы по протоколу <FONT SIZE="-1">FTP</FONT> игнорируются.
+<DT><B>--follow-tags=</B><I>list</I><DD>
+<A NAME="ixAEP"></A>
+Wget имеет встроенную таблицу тегов <FONT SIZE="-1">HTML</FONT>, в которых он ищет
+ссылки на другие файлы.  Вы можете указать дополнительные теги в
+разделенном запятыми списке <I>list</I> в этом параметре.
+<DT><B>-G</B> <I>list</I><DD>
+<A NAME="ixAEQ"></A>
+
+<DT><B>--ignore-tags=</B><I>list</I><DD>
+<A NAME="ixAER"></A>
+
+Обратно <B>--follow-tags</B>. Для пропуска тегов <FONT SIZE="-1">HTML</FONT> при рекурсивной
+загрузке, укажите их в разделенном запятыми списке <I>list</I>.
+
+
+<P>
+
+
+Раньше параметр <B>-G</B> был лучшим для загрузки отдельных страниц
+с их вспомогательными файлами. Вы можете посмотреть, как это было, указав команду
+
+
+<P>
+
+
+
+<PRE>
+        wget -Ga,area -H -k -K -r <A HREF="http://I">http://I</A>&lt;site&gt;/I&lt;document&gt;
+
+
+</PRE>
+
+
+Но теперь лучшим параметром для загрузки одной страницы полностью
+считается <B>--page-requisites</B>.
+<DT><B>-H</B><DD>
+<A NAME="ixAES"></A>
+
+<DT><B>--span-hosts</B><DD>
+<A NAME="ixAET"></A>
+
+Разрешает посещать любые сервера, на которые есть ссылка.
+<DT><B>-L</B><DD>
+<A NAME="ixAEU"></A>
+
+<DT><B>--relative</B><DD>
+<A NAME="ixAEV"></A>
+
+Следовать только по относительным ссылкам.
+При этом параметре файлы с других серверов точно не будут загружаться.
+<DT><B>-I</B> <I>list</I><DD>
+<A NAME="ixAEW"></A>
+
+<DT><B>--include-directories=</B><I>list</I><DD>
+<A NAME="ixAEX"></A>
+
+Список папок, разделенных запятыми, из которых разрешено загружать файлы.
+Элементы списка <I>list</I> могут содержать символы масок.
+<DT><B>-X</B> <I>list</I><DD>
+<A NAME="ixAEY"></A>
+
+<DT><B>--exclude-directories=</B><I>list</I><DD>
+<A NAME="ixAEZ"></A>
+
+Список папок, разделенных запятыми, исключаемых для загрузки
+(см. Ограничение по папкам).
+Элементы списка <I>list</I> могут содержать символы масок.
+<DT><B>-np</B><DD>
+<A NAME="ixAFA"></A>
+
+<DT><B>--no-parent</B><DD>
+<A NAME="ixAFB"></A>
+
+Не подниматься выше начального адреса при рекурсивной загрузке. 
+</DL>
+<A NAME="lbAN">&nbsp;</A>
+<H2>ПРИМЕРЫ ИСПОЛЬЗОВАНИЯ</H2>
+
+<A NAME="ixAFC"></A>
+Примеры разделены на три категории согласно их сложности.
+<A NAME="lbAO">&nbsp;</A>
+<H2>Просто использование</H2>
+
+<A NAME="ixAFD"></A>
+<DL COMPACT>
+<DT>*<DD>
+Если вам нужно загрузить <FONT SIZE="-1">URL</FONT>, то введите:
+
+
+<P>
+
+
+
+<PRE>
+        wget <A HREF="http://fly.srk.fer.hr/">http://fly.srk.fer.hr/</A>
+
+
+</PRE>
+
+
+<DT>*<DD>
+Но что же будет, если соединение медленное, а файл длинный?
+Есть возможность обрыва связи перед завершением загрузки.
+В этом случае Wget будет продолжать попытки нового соединения,
+пока не кончится число попыток (по умолчанию 20).
+Можно изменить это число, например до 45:
+
+
+<P>
+
+
+
+<PRE>
+        wget --tries=45 <A HREF="http://fly.srk.fer.hr/jpg/flyweb.jpg">http://fly.srk.fer.hr/jpg/flyweb.jpg</A>
+
+
+</PRE>
+
+
+<DT>*<DD>
+Теперь оставим Wget работать в фоновом режиме, а его сообщения будем
+записывать в журнал <I>log</I>. Долго набирать <B>--tries</B>,
+так что используем <B>-t</B>.
+
+
+<P>
+
+
+
+<PRE>
+        wget -t 45 -o log <A HREF="http://fly.srk.fer.hr/jpg/flyweb.jpg">http://fly.srk.fer.hr/jpg/flyweb.jpg</A> &amp;
+
+
+</PRE>
+
+
+Символ амперсанда в конце указывает командному интерпретатору продолжать работу,
+не дожидаясь завершения работы Wget.
+Чтобы программа делала повторы бесконечно - используйте <B>-t inf</B>.
+<DT>*<DD>
+Использовать <FONT SIZE="-1">FTP</FONT> также очень просто.
+Wget берет на себя все заботы по авторизации.
+
+
+<P>
+
+
+
+<PRE>
+        wget <A HREF="ftp://gnjilux.srk.fer.hr/welcome.msg">ftp://gnjilux.srk.fer.hr/welcome.msg</A>
+
+
+</PRE>
+
+
+<DT>*<DD>
+Если вы укажите адрес папки, то Wget загрузит листинг этой папки (т.е.
+файлы и подкаталоги, содержащиеся в ней) и сконвертирует его в
+формат <FONT SIZE="-1">HTML</FONT>.  Например:
+
+
+<P>
+
+
+
+<PRE>
+        wget <A HREF="ftp://prep.ai.mit.edu/pub/gnu/">ftp://prep.ai.mit.edu/pub/gnu/</A>
+        links index.html
+
+
+</PRE>
+
+
+</DL>
+<A NAME="lbAP">&nbsp;</A>
+<H2>Расширенное использование</H2>
+
+<A NAME="ixAFE"></A>
+<DL COMPACT>
+<DT>*<DD>
+Если у Вас есть файл с URL, которые вы хотите загрузить, 
+то используйте параметр <B>-i</B>:
+
+
+<P>
+
+
+
+<PRE>
+        wget -i I&lt;file&gt;
+
+
+</PRE>
+
+
+Если вы укажете <B>-</B> вместо имени файла, то URL будут читаться 
+из стандартного ввода (stdin).
+<DT>*<DD>
+Создать пятиуровневую копию сайта <FONT SIZE="-1">GNU</FONT> со структурой папок оригинала,
+с одной попыткой загрузки, сохранить сообщения в <I>gnulog</I>:
+
+
+<P>
+
+
+
+<PRE>
+        wget -r <A HREF="http://www.gnu.org/">http://www.gnu.org/</A> -o gnulog
+
+
+</PRE>
+
+
+<DT>*<DD>
+Как и в примере выше, но с конвертированием ссылки в файлах <FONT SIZE="-1">HTML</FONT>
+в локальные, для последующего автономного просмотра:
+
+
+<P>
+
+
+
+<PRE>
+        wget --convert-links -r <A HREF="http://www.gnu.org/">http://www.gnu.org/</A> -o gnulog
+
+
+</PRE>
+
+
+<DT>*<DD>
+Загрузить одну страницу <FONT SIZE="-1">HTML</FONT> и все файлы, требуемые для отображения
+последней (напр. рисунки, файлы каскадных стилей и т. д.). Также
+сконвертировать все ссылки на эти файлы:
+
+
+<P>
+
+
+
+<PRE>
+        wget -p --convert-links <A HREF="http://www.server.com/dir/page.html">http://www.server.com/dir/page.html</A>
+
+
+</PRE>
+
+
+Страница <FONT SIZE="-1">HTML</FONT> будет сохранена в <I><A HREF="http://www.server.com">www.server.com</A>/dir/page.html</I> 
+и рисунки, каскадные стили и прочее будет сохранено 
+в папке <I><A HREF="http://www.server.com">www.server.com</A>/</I>, кроме случая, 
+когда файлы будут загружаться с других серверов.
+<DT>*<DD>
+Как и в примере выше, но без папки <I><A HREF="http://www.server.com">www.server.com</A>/</I>.
+Также <I>все</I> файлы будут сохранены в подпапках <I>download/</I>.
+
+
+<P>
+
+
+
+<PRE>
+        wget -p --convert-links -nH -nd -Pdownload \
+             <A HREF="http://www.server.com/dir/page.html">http://www.server.com/dir/page.html</A>
+
+
+</PRE>
+
+
+<DT>*<DD>
+Загрузить index.html с <B><A HREF="http://www.lycos.com">www.lycos.com</A></B>, отображая заголовки сервера: 
+
+
+<P>
+
+
+
+<PRE>
+        wget -S <A HREF="http://www.lycos.com/">http://www.lycos.com/</A>
+
+
+</PRE>
+
+
+<DT>*<DD>
+Сохранить заголовки в файл для дальнейшего использования. 
+
+
+<P>
+
+
+
+<PRE>
+        wget -s <A HREF="http://www.lycos.com/">http://www.lycos.com/</A>
+        more index.html
+
+
+</PRE>
+
+
+<DT>*<DD>
+Загрузить два высших уровня <B>wuarchive.wustl.edu</B> в <I>/tmp</I>.
+
+
+<P>
+
+
+
+<PRE>
+        wget -r -l2 -P/tmp <A HREF="ftp://wuarchive.wustl.edu/">ftp://wuarchive.wustl.edu/</A>
+
+
+</PRE>
+
+
+<DT>*<DD>
+Загрузить файлы GIF папки на <FONT SIZE="-1">HTTP</FONT> сервере. 
+Команда <B>wget <A HREF="http://www.server.com/dir/*.gif">http://www.server.com/dir/*.gif</A></B> не будет работать,
+так как маскировочные символы не поддерживаются при загрузке
+по протоколу <FONT SIZE="-1">HTTP</FONT>. Используйте:
+
+
+<P>
+
+
+
+<PRE>
+        wget -r -l1 --no-parent -A.gif <A HREF="http://www.server.com/dir/">http://www.server.com/dir/</A>
+
+
+</PRE>
+
+
+<B>-r -l1</B> включает рекурсивную загрузку с максимальной глубиной 1.
+<B>--no-parent</B> выключает следование по ссылкам в родительскую папку,
+имеющую верхний уровень, 
+<B>-A.gif</B> разрешает загружать только файлы с расширением <FONT SIZE="-1">.GIF</FONT>.
+<B>-A ``*.gif''</B> также будет работать.
+<DT>*<DD>
+Предположим, что во время рекурсивной загрузки вам нужно было срочно
+выключить/перезагрузить компьютер. Чтобы не загружать уже имеющиеся
+файлы, используйте:
+
+
+<P>
+
+
+
+<PRE>
+        wget -nc -r <A HREF="http://www.gnu.org/">http://www.gnu.org/</A>
+
+
+</PRE>
+
+
+<DT>*<DD>
+Если вы хотите указать имя пользователя и пароль для сервера <FONT SIZE="-1">HTTP</FONT>
+или <FONT SIZE="-1">FTP</FONT>, используйте соответствующий синтаксис <FONT SIZE="-1">URL</FONT>:
+
+
+<P>
+
+
+
+<PRE>
+        wget <A HREF="ftp://hniksic:mypassword@unix.server.com/.emacs">ftp://hniksic:mypassword@unix.server.com/.emacs</A>
+
+
+</PRE>
+
+
+<DT>*<DD>
+Вы хотите, чтобы загружаемые документы шли в стандартный вывод, а не в файлы?
+
+
+<P>
+
+
+
+<PRE>
+        wget -O - <A HREF="http://jagor.srce.hr/">http://jagor.srce.hr/</A> <A HREF="http://www.srce.hr/">http://www.srce.hr/</A>
+
+
+</PRE>
+
+
+Если вы хотите устроить конвейер и загрузить все сайты,
+ссылки на которые указаны на одной странице:
+
+
+<P>
+
+
+
+<PRE>
+        wget -O - <A HREF="http://cool.list.com/">http://cool.list.com/</A> | wget --force-html -i -
+
+
+</PRE>
+
+
+</DL>
+<A NAME="lbAQ">&nbsp;</A>
+<H2>Профессиональное использование</H2>
+
+<A NAME="ixAFF"></A>
+<DL COMPACT>
+<DT>*<DD>
+Для хранение зеркала страницы (или папки <FONT SIZE="-1">FTP</FONT>), то
+используйте <B>--mirror</B> (<B>-m</B>), что заменяет <B>-r -l inf -N</B>.
+Вы можете добавить Wget в crontab с запросом на проверку обновлений каждое воскресенье:
+
+
+<P>
+
+
+
+<PRE>
+        crontab
+        0 0 * * 0 wget --mirror <A HREF="http://www.gnu.org/">http://www.gnu.org/</A> -o /home/me/weeklog
+
+
+</PRE>
+
+
+<DT>*<DD>
+Вы также хотите, чтобы ссылки конвертировались в локальные.
+Но после прочтения этого руководства, вы знаете, что при этом 
+не будет работать сравнение по времени.  Укажите Wget
+оставлять резервные копии <FONT SIZE="-1">HTML</FONT> файлов перед конвертацией.
+Команда:
+
+
+<P>
+
+
+
+<PRE>
+        wget --mirror --convert-links --backup-converted  \
+             <A HREF="http://www.gnu.org/">http://www.gnu.org/</A> -o /home/me/weeklog
+
+
+</PRE>
+
+
+<DT>*<DD>
+А если не работает локальный просмотр файлов <FONT SIZE="-1">HTML</FONT> с расширением,
+отличным от <B>.html</B>, например <I>index.cgi</I>, то нужно передать
+команду на переименование всех таких файлов (content-type = <B>text/html</B>)
+в <I>имя.html</I>.
+
+
+<P>
+
+
+
+<PRE>
+        wget --mirror --convert-links --backup-converted \
+             --html-extension -o /home/me/weeklog        \
+             <A HREF="http://www.gnu.org/">http://www.gnu.org/</A>
+
+
+</PRE>
+
+
+С краткими аналогами команд:
+
+
+<P>
+
+
+
+<PRE>
+        wget -m -k -K -E <A HREF="http://www.gnu.org/">http://www.gnu.org/</A> -o /home/me/weeklog
+
+
+</PRE>
+
+
+</DL>
+<A NAME="lbAR">&nbsp;</A>
+<H2>ФАЙЛЫ</H2>
+
+<A NAME="ixAFG"></A>
+<DL COMPACT>
+<DT><B>/usr/local/etc/wgetrc</B><DD>
+<A NAME="ixAFH"></A>
+По умолчанию это расположение <I>глобального</I> файла настроек.
+<DT><B>.wgetrc</B><DD>
+<A NAME="ixAFI"></A>
+Файл настроек пользователя.
+</DL>
+<A NAME="lbAS">&nbsp;</A>
+<H2>НАЙДЕННЫЕ ОШИБКИ</H2>
+
+<A NAME="ixAFJ"></A>
+Вы можете отправлять отчеты об ошибках в <FONT SIZE="-1">GNU</FONT> Wget
+на адрес &lt;<TT>&quot;<A HREF="mailto:bug-wget@gnu.org">bug-wget@gnu.org</A>&quot;</TT>&gt; (на английском).
+<P>
+
+Перед отправкой:
+<DL COMPACT>
+<DT>1.<DD>
+Убедитесь, что поведение программы действительно ошибочно.
+Если Wget &quot;вылетает&quot;, то это ошибка.
+Если поведение Wget не соответствует документации, то это ошибка.
+Если все работает странно, но вы не уверены, как оно должно
+работать на самом деле, то это тоже может быть ошибкой.
+<DT>2.<DD>
+Попытайтесь повторить ситуацию с выдачей ошибки
+за минимальное количество действий.
+
+
+<P>
+
+
+Не спешите отправлять <I>.wgetrc</I>, попробуйте проделать
+все действия, приведшие к ошибке с другим файлом настроек
+(или вообще без него).
+<DT>3.<DD>
+Запустите Wget с параметром <B>-d</B> и отправьте журнал
+(или его части). <I>Намного</I> легче отыскивать ошибки
+при наличии таких журналов.
+<DT>4.<DD>
+Если Wget выдал ошибку, то попытайтесь запустить его в отладчике,
+например <TT>&quot;gdb `which wget` core&quot;</TT> и
+введите <TT>&quot;where&quot;</TT> для получения обратной трассировки.
+</DL>
+<A NAME="lbAT">&nbsp;</A>
+<H2>СМ. ТАКЖЕ</H2>
+
+<A NAME="ixAFK"></A>
+<FONT SIZE="-1">GNU</FONT> Info для <I>wget</I>.
+<A NAME="lbAU">&nbsp;</A>
+<H2>АВТОРЫ</H2>
+
+<A NAME="ixAFL"></A>
+Hrvoje Niksic &lt;<A HREF="mailto:hniksic@arsdigita.com">hniksic@arsdigita.com</A>&gt;.
+<A NAME="lbAV">&nbsp;</A>
+<H2>ПЕРЕВОД</H2>
+
+<A NAME="ixAFM"></A>
+Н. Шафоростов &lt;<A HREF="mailto:admin@program.net.ua">admin@program.net.ua</A>&gt;
+<A NAME="lbAW">&nbsp;</A>
+<H2>АВТОРСКИЕ ПРАВА</H2>
+
+<A NAME="ixAFN"></A>
+Copyright (c) 1996, 1997, 1998, 2000, 2001 Free Software Foundation, Inc.
+<P>
+
+Это свободное программное обеспечение;
+условия копирования ищите в исходных текстах.
+НЕ существует никаких гарантий; программа НЕ предназначена для ПРОДАЖ.
+<P>
+
+<HR>
+<A NAME="index">&nbsp;</A><H2>Index</H2>
+<DL>
+<DT><A HREF="#lbAB">НАЗВАНИЕ</A><DD>
+<DT><A HREF="#lbAC">СИНТАКСИС</A><DD>
+<DT><A HREF="#lbAD">ОПИСАНИЕ</A><DD>
+<DT><A HREF="#lbAE">OПЦИИ</A><DD>
+<DT><A HREF="#lbAF">Основные параметры</A><DD>
+<DT><A HREF="#lbAG">Параметры сообщений</A><DD>
+<DT><A HREF="#lbAH">Параметры загрузки</A><DD>
+<DT><A HREF="#lbAI">Параметры загрузки папок</A><DD>
+<DT><A HREF="#lbAJ">Параметры <FONT SIZE="-1">HTTP</FONT></A><DD>
+<DT><A HREF="#lbAK">Параметры <FONT SIZE="-1">FTP</FONT></A><DD>
+<DT><A HREF="#lbAL">Параметры рекурсивной загрузки</A><DD>
+<DT><A HREF="#lbAM">Параметры запрета/разрешения рекурсивной загрузки</A><DD>
+<DT><A HREF="#lbAN">ПРИМЕРЫ ИСПОЛЬЗОВАНИЯ</A><DD>
+<DT><A HREF="#lbAO">Просто использование</A><DD>
+<DT><A HREF="#lbAP">Расширенное использование</A><DD>
+<DT><A HREF="#lbAQ">Профессиональное использование</A><DD>
+<DT><A HREF="#lbAR">ФАЙЛЫ</A><DD>
+<DT><A HREF="#lbAS">НАЙДЕННЫЕ ОШИБКИ</A><DD>
+<DT><A HREF="#lbAT">СМ. ТАКЖЕ</A><DD>
+<DT><A HREF="#lbAU">АВТОРЫ</A><DD>
+<DT><A HREF="#lbAV">ПЕРЕВОД</A><DD>
+<DT><A HREF="#lbAW">АВТОРСКИЕ ПРАВА</A><DD>
+</DL>
+<HR>
+<br>
+<form method="get" action="/search.shtml">
+<font size=-1>
+<font color=#555555>Поиск:&nbsp;</font><input type="text" size="30" name="words" value="wget">
+<select name=restrict>
+<option value="/">Весь сайт
+<option value="/prog/|/links/">Программы и Ссылки
+<option value="/openforum/">Форум
+<option value="/base/X/|/base/dev/|/base/faq/|/base/fido/|/base/modem/|/base/net/|/base/rel/|/base/rus/|/base/sec|/base/sys/|/base/patch/|/base/muzfaq/|/base/cisco/">Русские статьи
+<option value="/man.shtml" selected>MAN страницы
+<option value="/docs/">Архив документации
+<option value="/base/aix/|/base/bsd/|/base/cert/|/base/exploits/|/base/fire/|/base/hp/|/base/irix/|/base/linux/|/base/maillist/|/base/ms/|/base/sco/|/base/summary/|/base/sun/|/base/audit/|/base/cgi/|/base/netsoft/|/base/patches/|/base/usersoft/">Раздел безопасности
+</select><input type="submit" value="Найти">
+</font>
+<input type=hidden name=method value="and">
+<input type=hidden name=format value="builtin-long">
+<input type=hidden name=sort value="score">
+<input type=hidden name=config value=htdig>
+<input type=hidden name=restrict value="">
+<input type=hidden name=exclude value="">
+</form>
+<br>
+<!--htdig_noindex-->
+<noindex>
+<br>
+
+<table id=ibm_adv><tr valign=top><td width="383">
+<iframe src="http://www.opennet.ru/adv_ibm.htm" height="240" width="383" scrolling="no" name="ibm" border="0" frameborder="0" target="_blank"></iframe>
+</td><td>
+ 
+
+     <table width="95%" align="center" bgcolor="#441144" border="1" cellpadding="2" cellspacing="0">
+     <tbody> 
+
+       <tr>
+            <td align="center" bgcolor="#ffffff">
+               <a target="_blank" href="http://shop.linuxformat.ru/lxf_01_12_2012/?sid=nP5OTFA1" 
+               title="ПОДПИШИСЬ НА ЖУРНАЛ Linux Format 2012!">
+                  <font size="4" color="#5b1900" face="sans-serif">
+                  <b>ПОДПИШИСЬ НА ЖУРНАЛ Linux Format 2012!</b>
+                  </font>
+               </a>
+            </td>
+       </tr>
+     <tr>
+	  <td align="left" bgcolor="#ffffff">
+	  <table size="2" color="#5b1900" face="sans-serif" border="0">
+	  <tr>
+	  <td>
+		<a target="_blank" href="http://shop.linuxformat.ru/lxf_01_12_2012/?sid=nP5OTFA1"/>
+		<img src="http://linuxcenter.ru/banners/linuxformat/lxf2012_200x300.gif" width="160" height="230" border="0"/>
+		</a>
+		</td>
+		<td>
+		 <p>
+         Журнал "Linux Format" (Линукс Формат)- Единственный в России и странах СНГ журнал на русском языке, посвящённый Linux и 
+         свободному ПО. Журнал для IT-директоров, IT-менеджеров, программистов, системных администраторов, учителей школ и 
+         преподавателей ВУЗов и всех пользователей ПК. В каждом выпуске: Новости индустрии OpenSource, обзоры новинок свободного ПО, 
+         обучающие и методические статьи.
+</p>
+         <p>
+         Каждый, кто оформит подписку, получает бонусы и подарки- объёмные наклейки на системный блок, диск с архивом номеров за 
+         2005-2011 г.г. и ежемесячно электронную версию журнала в pdf-формате.
+			</p>
+			<p>
+			<a href="http://shop.linuxformat.ru/lxf_01_12_2012/?sid=nP5OTFA1">Оформить подписку на год</a>
+			</p>
+			</td>
+			</tr>
+			</table>
+		</td>
+    </tr>
+    </tbody>
+    </table>
+
+		</td></tr></table>
+
+</noindex>
+<!--/htdig_noindex-->
+
+
+<!-- footer -->
+<!--htdig_noindex-->
+<br>
+<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=1 WIDTH="100%" BGCOLOR="#B0B190">
+<TR><TD>
+<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 WIDTH="100%" VALIGN="MIDDLE">
+<TR>
+<TD WIDTH="35%" BGCOLOR="#E9EAD6" ALIGN=LEFT>
+<FONT SIZE="-1">
+&nbsp;&nbsp;<A HREF="/cgi-bin/opennet/bookmark.cgi">Закладки&nbsp;на&nbsp;сайте</A><BR>
+&nbsp;&nbsp;<A HREF="/cgi-bin/opennet/bookmark.cgi?submit=add" target="blank_">Проследить&nbsp;за&nbsp;страницей</A>
+</FONT>
+</TD>
+<TD WIDTH="65%" ALIGN=RIGHT BGCOLOR="#E9EAD6">
+<FONT SIZE="-1">Created&nbsp;1996-2012&nbsp;by&nbsp;<B><A HREF="/contact.shtml" title="email mc@tyumen.ru">Maxim&nbsp;Chirkov</A></B></FONT>&nbsp;&nbsp;<BR>
+<FONT SIZE="-1"><A HREF="http://www.opennet.ru/add.shtml">Добавить</A>,&nbsp;<A HREF="http://www.opennet.ru/reklama.shtml">Реклама</A>,&nbsp;<A HREF="http://www.opennet.ru/banners2.shtml">Вебмастеру</A>,&nbsp;<A HREF="http://www.opennet.ru/guide.shtml">ГИД</A></FONT>&nbsp;&nbsp;
+</TD>
+</TR>
+</TABLE>
+</TD></TR>
+</TABLE>
+
+
+<div align=right><table><tr><td>
+<a target=_blank href="http://www.runnet.ru"><img src="/img/runnet.gif" border=0 height=31 width=88 alt="RUNNet"></a>
+<a target=_blank href="http://top.list.ru/jump?from=77689"><img src="http://top.list.ru/counter?id=77689;t=75;l=1" border=0 height=31 width=38 alt="TopList"></a>
+<script type="text/javascript"><!--
+document.write("<a href='http://www.liveinternet.ru/click' "+
+"target=_blank><img src='//counter.yadro.ru/hit?t45.6;r"+
+escape(document.referrer)+((typeof(screen)=="undefined")?"":
+";s"+screen.width+"*"+screen.height+"*"+(screen.colorDepth?
+screen.colorDepth:screen.pixelDepth))+";u"+escape(document.URL)+
+";"+Math.random()+
+"' alt='' title='LiveInternet' "+
+"border='0' width='31' height='31'><\/a>")
+//--></script>
+<a target=_blank href="http://counter.rambler.ru/top100/"><img src="http://counter.rambler.ru/top100.cnt?10566" width=1 height=1 border=0><img src="/banner.gif" width=88 height=31 border=0></a>
+</td></tr></table>
+</div>
+</form>
+<!--/htdig_noindex-->
+<!-- end of footer -->
+
+</body>
+</html>
+
